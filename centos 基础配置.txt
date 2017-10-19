@@ -1,0 +1,81 @@
+
+在Linux上安装autojump
+
+在Ubuntu或Debian上安装autojump：
+    $ sudo apt-get install autojump
+要在CentOS或Fedora上安装autojump，请使用yum命令。在CentOS上，你需要先启用EPEL仓库才行。
+    $ sudo yum install autojump
+在Archlinux上安装autojump：
+    $ sudo pacman -S autojump
+
+autojump的基本用法
+autojump的工作方式很简单：它会在你每次启动命令时记录你当前位置，并把它添加进它自身的数据库中。这样，某些目录比其它一些目录添加的次数多，这些目录一般就代表你最重要的目录，而它们的“权重”也会增大。
+现在不管你在哪个目录，你都可以使用下面的语法来直接跳转到这些目录：
+    autojump [目录的名字或名字的一部分]
+注意，你不需要输入完整的名称，因为autojump会检索它的数据库，并返回最可能的结果。
+例如，假定我们正在下面的目录结构中工作。
+那么下面的命令将直接让你跳到/root/home/doc下，不管你当前位置在哪里。
+    $ autojump do
+如果你也很讨厌打字，那么我推荐你为autojump起个别名，或者使用默认的别名。
+    $ j [目录的名字或名字的一部分]
+另外一个引人注目的功能是，autojump支持zsh和自动补完。如果你不确认哪里是不是你要跳转的地方，敲击TAB键就会列出完整路径。
+还是同样的例子，输入：
+    $ autojump d
+然后敲击tab键，将会返回/root/home/doc或者/root/home/ddl。
+最后，对于高级用户，你可以访问目录数据库，并修改它的内容。可以使用下面的命令来手动添加一个目录：
+    $ autojump -a [目录]
+如果你突然想要把当前目录变成你的最爱和使用最频繁的文件夹，你可以在该目录通过命令的参数 i 来手工增加它的权重
+    $ autojump -i [权重]
+这将使得该目录更可能被选择跳转。相反的例子是在该目录使用参数 d 来减少权重：
+    $ autojump -d [权重]
+要跟踪所有这些改变，输入：
+    $ autojump -s
+这会显示数据库中的统计数据。而以下：
+    $ autojump --purge
+命令将会把不再存在的目录从数据库中移除。
+
+
+1. 确认你的CentOS 的版本
+首先通过以下命令确认你的CentOS 版本
+$ cat /etc/RedHat-release 
+
+CentOS release 6.4 (Final)
+2. 下载EPEL 的rpm 安装包
+
+现在从上面的地址下载CentOS 版本所对应的EPEL 的版本
+
+$ wget http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+3. 安装EPEL
+
+通过以下命令安装EPEL 软件包
+
+$ sudo rpm -ivh epel-release-6-8.noarch.rpm
+
+或
+
+$ sudo rpm -ivh epel-release*
+
+5. 检查EPEL 源
+
+安装好EPEL 源后，用yum 命令来检查是否添加到源列表
+
+# yum repolist
+
+EPEL已经在repo 后列出，并且显示提供了上万个软件包，所以EPEL 已经安装到你的CentOS了。
+
+EPEL源的配置安装到了 /etc/yum.repos.d/epel.repo 文件。
+
+
+
+
+
+
+用安装Python模块出现error: command 'gcc' failed with exit status 1 ，明明装了gcc的，怎么会不行呢，然后发觉是failed不是not found，这说明这个错误个gcc没多大关系，应该是缺少某些功能模块，然后谷歌了一下，先后安装了python-devel,libffi-devel后还是不行，最后发觉要安装openssl-devel才行
+
+可如下命令行安装：
+
+yum install gcc libffi-devel python-devel openssl-devel
+
+
+使用 quit(), exit(), 或者Ctrl-D退出命令行。
